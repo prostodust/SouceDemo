@@ -5,14 +5,6 @@ import org.testng.annotations.Test;
 
 public class CartTest extends BaseTest {
 
-    //loginPage.openPage()
-    //loginPage.login(username,password)
-    //productsPage.addToCart("Product Item")
-    //cartPage.openPage()
-    //cartPage.getQuantity("Product Item")
-    //cartPage.getPrice("Product Item")
-    //Assertion
-
     @Test
     public void addProductToCartTest() {
         String productName = "Sauce Labs Bolt T-Shirt";
