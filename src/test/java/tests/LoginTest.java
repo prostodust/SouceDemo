@@ -3,27 +3,39 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest {
+public class LoginTest extends BaseTest implements ITestConstants {
 
+    /**
+     * Empty value in the "username" field
+     */
     @Test
     public void enterEmptyUsernameTest() {
-        loginPage.openPage();
-        loginPage.login("", "secret_sauce");
-        Assert.assertEquals(loginPage.getAnErrorMessage(), "Epic sadface: Username is required");
+        loginPage.openPage(SAUCE_DEMO_BASE_URL);
+        loginPage.waitForPageOpened();
+        loginPage.login("", STANDARD_USER_PASSWORD);
+        Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username is required");
     }
 
+    /**
+     * Empty value in the "password" field
+     */
     @Test
     public void enterEmptyPasswordTest() {
-        loginPage.openPage();
-        loginPage.login("standard_user", "");
-        Assert.assertEquals(loginPage.getAnErrorMessage(), "Epic sadface: Password is required");
+        loginPage.openPage(SAUCE_DEMO_BASE_URL);
+        loginPage.waitForPageOpened();
+        loginPage.login(STANDARD_USER_LOGIN, "");
+        Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Password is required");
     }
 
+    /**
+     * Empty value in the "name" and "password" fields
+     */
     @Test
     public void enterEmptyUsernameAndPasswordTest() {
-        loginPage.openPage();
+        loginPage.openPage(SAUCE_DEMO_BASE_URL);
+        loginPage.waitForPageOpened();
         loginPage.login("", "");
-        Assert.assertEquals(loginPage.getAnErrorMessage(), "Epic sadface: Username is required");
+        Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username is required");
     }
 
 }

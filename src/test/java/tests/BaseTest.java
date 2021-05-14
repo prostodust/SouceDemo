@@ -7,32 +7,32 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
 
-import java.util.concurrent.TimeUnit;
-
 public class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
     CartPage cartPage;
-    CheckoutStepOnePage checkoutStepOnePage;
-    CheckoutStepTwoPage checkoutStepTwoPage;
-    CheckoutCompletePage checkoutCompletePage;
+    CheckoutPage checkoutPage;
 
+    /**
+     * Actions performed before each test
+     */
     @BeforeMethod
     public void initTest() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         cartPage = new CartPage(driver);
-        checkoutStepOnePage = new CheckoutStepOnePage(driver);
-        checkoutStepTwoPage = new CheckoutStepTwoPage(driver);
-        checkoutCompletePage = new CheckoutCompletePage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
 
-    @AfterMethod
+    /**
+     * Actions performed after each test
+     */
+    @AfterMethod(alwaysRun = true)
     public void endTest() {
         driver.quit();
     }
