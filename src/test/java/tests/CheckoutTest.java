@@ -1,14 +1,28 @@
 package tests;
 
-public class CheckoutTest extends BaseTest {
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-    //TODO: To complete this test
-    //loginPage.openPage()
-    //loginPage.login(username,password)
-    //checkoutPage.openPage()
-    //checkoutPage.fillingInCustomerData("firstName", "lastName", "zipCode")
-    //checkoutPage.getCheckoutOverviewText("Checkout Overview")
-    //checkoutPage.getCheckoutCompleteText("Checkout Complete")
-    //Assertion
+public class CheckoutTest extends BaseTest implements ITestConstants {
+
+    /**
+     * Checking the purchase payment
+     */
+    @Test
+    public void paymentForThePurchaseTest() {
+        loginPage.openPage(SAUCE_DEMO_BASE_URL)
+                .waitForPageOpened()
+                .login(STANDARD_USER_LOGIN, STANDARD_USER_PASSWORD)
+                .addProductToCart("Sauce Labs Fleece Jacket");
+        checkoutPage.openPage(SAUCE_DEMO_CHECKOUT_PAGE_URL)
+                .fillingCustomerData("Sergey", "Ivanov", "231400")
+                .waitForPageLoaded();
+        Assert.assertEquals(checkoutPage.getTheTextItemTotal(), "Item total: $49.99");
+        Assert.assertEquals(checkoutPage.getTheTextTax(), "Tax: $4.00");
+        Assert.assertEquals(checkoutPage.getTheTextTotal(), "Total: $53.99");
+        checkoutPage.clickFinishButton()
+                .waitForPageLoaded();
+        Assert.assertEquals(checkoutPage.getCheckoutCompleteText(), "CHECKOUT: COMPLETE!");
+    }
 
 }

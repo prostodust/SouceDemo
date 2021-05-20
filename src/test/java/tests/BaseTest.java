@@ -7,7 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
 
-public class BaseTest {
+abstract class BaseTest {
     WebDriver driver;
     LoginPage loginPage;
     ProductsPage productsPage;
@@ -22,11 +22,9 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        loginPage = new LoginPage(driver);
-        productsPage = new ProductsPage(driver);
-        cartPage = new CartPage(driver);
-        checkoutPage = new CheckoutPage(driver);
+        // implicit waiting is temporarily disabled
+        // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        initPages();
     }
 
     /**
@@ -35,6 +33,16 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void endTest() {
         driver.quit();
+    }
+
+    /**
+     * Initializing pages
+     */
+    public void initPages() {
+        loginPage = new LoginPage(driver);
+        productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
 
 }

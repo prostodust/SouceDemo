@@ -1,10 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 abstract class BasePage {
@@ -13,17 +12,7 @@ abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-    }
-
-    /**
-     * Waiting for an element to load during a timeout
-     *
-     * @param element the element
-     * @param timeout the timeout
-     */
-    public void waitForElementLocated(By element, int timeout) {
-        wait = new WebDriverWait(driver, timeout);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+        PageFactory.initElements(driver, this);
     }
 
     /**

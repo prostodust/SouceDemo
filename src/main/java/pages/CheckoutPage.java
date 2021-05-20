@@ -1,7 +1,8 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CheckoutPage extends HeaderPage {
 
@@ -9,25 +10,41 @@ public class CheckoutPage extends HeaderPage {
         super(driver);
     }
 
-    public static final By FIRSTNAME_INPUT = By.xpath("//*[@data-test='firstName']");
-    public static final By LASTNAME_INPUT = By.xpath("//*[@data-test='lastName']");
-    public static final By ZIPCODE_INPUT = By.xpath("//*[@data-test='postalCode']");
-    public static final By CONTINUE_BUTTON = By.xpath("//*[@data-test='continue']");
+    @FindBy(xpath = "//*[@data-test='firstName']")
+    WebElement firstNameInput;
 
-    public static final By ITEM_TOTAL_AMOUNT = By.xpath("//*[@class='summary_subtotal_label']");
-    public static final By TAX_AMOUNT = By.xpath("//*[@class='summary_tax_label']");
-    public static final By TOTAL_AMOUNT = By.xpath("//*[@class='summary_total_label']");
-    public static final By FINISH_BUTTON = By.xpath("//*[@id='finish']");
+    @FindBy(xpath = "//*[@data-test='lastName']")
+    WebElement lastNameInput;
 
-    public static final By COMPLETE_TEXT = By.xpath("//*[@class='header_secondary_container']/span");
+    @FindBy(xpath = "//*[@data-test='postalCode']")
+    WebElement zipCodeInput;
+
+    @FindBy(xpath = "//*[@data-test='continue']")
+    WebElement continueButton;
+
+    @FindBy(xpath = "//*[@class='summary_subtotal_label']")
+    WebElement itemTotalAmount;
+
+    @FindBy(xpath = "//*[@class='summary_tax_label']")
+    WebElement taxAmount;
+
+    @FindBy(xpath = "//*[@class='summary_total_label']")
+    WebElement totalAmount;
+
+    @FindBy(xpath = "//*[@id='finish']")
+    WebElement finishButton;
+
+    @FindBy(xpath = "//*[@class='header_secondary_container']/span")
+    WebElement completeText;
 
     /**
      * Open page
      *
      * @param url the url
      */
-    public void openPage(String url) {
+    public CheckoutPage openPage(String url) {
         driver.get(url);
+        return this;
     }
 
     /**
@@ -37,11 +54,51 @@ public class CheckoutPage extends HeaderPage {
      * @param lastname  the lastname
      * @param zipcode   the zipcode
      */
-    public void fillingCustomerData(String firstname, String lastname, String zipcode) {
-        driver.findElement(FIRSTNAME_INPUT).sendKeys(firstname);
-        driver.findElement(LASTNAME_INPUT).sendKeys(lastname);
-        driver.findElement(ZIPCODE_INPUT).sendKeys(zipcode);
-        driver.findElement(CONTINUE_BUTTON).click();
+    public CheckoutPage fillingCustomerData(String firstname, String lastname, String zipcode) {
+        firstNameInput.sendKeys(firstname);
+        lastNameInput.sendKeys(lastname);
+        zipCodeInput.sendKeys(zipcode);
+        continueButton.click();
+        return this;
     }
 
+    /**
+     * Get the text Item total amount
+     * @return item total
+     */
+    public String getTheTextItemTotal() {
+        return itemTotalAmount.getText();
+    }
+
+    /**
+     * Get the text Tax amount
+     * @return tax
+     */
+    public String getTheTextTax() {
+        return taxAmount.getText();
+    }
+
+    /**
+     * Get the text Total amount
+     * @return total
+     */
+    public String getTheTextTotal() {
+        return totalAmount.getText();
+    }
+
+    /**
+     * Pressing the button finish
+     */
+    public CheckoutPage clickFinishButton() {
+        finishButton.click();
+        return this;
+    }
+
+    /**
+     * Get checkout complete text
+     * @return complete text
+     */
+    public String getCheckoutCompleteText() {
+        return completeText.getText();
+    }
 }
