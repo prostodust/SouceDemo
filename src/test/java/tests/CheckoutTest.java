@@ -1,16 +1,14 @@
 package tests;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
 public class CheckoutTest extends BaseTest {
 
+    //TODO: To complete this test
     //loginPage.openPage()
     //loginPage.login(username,password)
-    //checkoutStepOnePage.openPage()
-    //checkoutStepOnePage.fillingInCustomerData("firstName", "lastName", "zipCode")
-    //checkoutStepTwoPage.getCheckoutOverviewText("Checkout Overview")
-    //checkoutCompletePage.getCheckoutCompleteText("Checkout Complete")
+    //checkoutPage.openPage()
+    //checkoutPage.fillingInCustomerData("firstName", "lastName", "zipCode")
+    //checkoutPage.getCheckoutOverviewText("Checkout Overview")
+    //checkoutPage.getCheckoutCompleteText("Checkout Complete")
     //Assertion
 
 }
