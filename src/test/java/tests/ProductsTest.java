@@ -15,7 +15,7 @@ public class ProductsTest extends BaseTest implements ITestConstants {
                 .waitForPageOpened()
                 .login(STANDARD_USER_LOGIN, STANDARD_USER_PASSWORD)
                 .addProductToCart(productName);
-        Assert.assertEquals(productsPage.getButtonTextProduct(productName), "REMOVE");
+        Assert.assertEquals(productsPage.getAddProductToCartButtonText(productName), "REMOVE");
     }
 
 }

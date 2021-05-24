@@ -66,7 +66,7 @@ public class CheckoutPage extends HeaderPage {
      * Get the text Item total amount
      * @return item total
      */
-    public String getTheTextItemTotal() {
+    public String getTotalItemsText() {
         return itemTotalAmount.getText();
     }
 
@@ -74,7 +74,7 @@ public class CheckoutPage extends HeaderPage {
      * Get the text Tax amount
      * @return tax
      */
-    public String getTheTextTax() {
+    public String getTaxText() {
         return taxAmount.getText();
     }
 
@@ -82,7 +82,7 @@ public class CheckoutPage extends HeaderPage {
      * Get the text Total amount
      * @return total
      */
-    public String getTheTextTotal() {
+    public String getTotalText() {
         return totalAmount.getText();
     }
 

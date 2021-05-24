@@ -22,8 +22,10 @@ abstract class BaseTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        // implicit waiting is temporarily disabled
-        // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        /*
+        TODO: implicit waiting is temporarily disabled
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        */
         initPages();
     }
 
@@ -44,5 +46,4 @@ abstract class BaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
     }
-
 }

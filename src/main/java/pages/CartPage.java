@@ -3,11 +3,15 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CartPage extends HeaderPage implements ICartPage {
+public class CartPage extends HeaderPage {
 
     public CartPage(WebDriver driver) {
         super(driver);
     }
+
+    String PRODUCT_ITEM = "//*[text()='%s']/ancestor::*[@class='cart_item']";
+    String PRODUCT_QUANTITY = PRODUCT_ITEM + "//*[@class='cart_quantity']";
+    String PRODUCT_PRICE = PRODUCT_ITEM + "//*[@class='inventory_item_price']";
 
     /**
      * Open page
