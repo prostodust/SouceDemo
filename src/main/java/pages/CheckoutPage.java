@@ -1,8 +1,13 @@
 package pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.time.Duration;
 
 public class CheckoutPage extends HeaderPage {
 
@@ -100,5 +105,17 @@ public class CheckoutPage extends HeaderPage {
      */
     public String getCheckoutCompleteText() {
         return completeText.getText();
+    }
+
+    /**
+     * Waiting for the page to open
+     */
+    public CheckoutPage waitForPageOpened() {
+        Wait<WebDriver> fluent = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        WebElement foo = fluent.until(driver -> completeText);
+        return this;
     }
 }

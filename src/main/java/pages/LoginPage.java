@@ -76,15 +76,4 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    /**
-     * Waiting for the page to open
-     */
-    public LoginPage waitForPageOpened() {
-        Wait<WebDriver> fluent = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofSeconds(5))
-                .ignoring(NoSuchElementException.class);
-        WebElement foo = fluent.until(driver -> driver.findElement(By.id("login-button")));
-        return this;
-    }
 }
