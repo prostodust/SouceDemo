@@ -10,9 +10,9 @@ public class LoginTest extends BaseTest implements ITestConstants {
      */
     @Test
     public void enterEmptyUsernameTest() {
-        loginPage.openPage(SAUCE_DEMO_BASE_URL);
-        loginPage.waitForPageOpened();
-        loginPage.login("", STANDARD_USER_PASSWORD);
+        loginPage.openPage(SAUCE_DEMO_BASE_URL)
+                .waitForPageOpened()
+                .login("", STANDARD_USER_PASSWORD);
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username is required");
     }
 
@@ -21,9 +21,9 @@ public class LoginTest extends BaseTest implements ITestConstants {
      */
     @Test
     public void enterEmptyPasswordTest() {
-        loginPage.openPage(SAUCE_DEMO_BASE_URL);
-        loginPage.waitForPageOpened();
-        loginPage.login(STANDARD_USER_LOGIN, "");
+        loginPage.openPage(SAUCE_DEMO_BASE_URL)
+                .waitForPageOpened()
+                .login(STANDARD_USER_LOGIN, "");
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Password is required");
     }
 
@@ -32,9 +32,9 @@ public class LoginTest extends BaseTest implements ITestConstants {
      */
     @Test
     public void enterEmptyUsernameAndPasswordTest() {
-        loginPage.openPage(SAUCE_DEMO_BASE_URL);
-        loginPage.waitForPageOpened();
-        loginPage.login("", "");
+        loginPage.openPage(SAUCE_DEMO_BASE_URL)
+                .waitForElementBotLogoLocated(20)
+                .login("", "");
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username is required");
     }
 

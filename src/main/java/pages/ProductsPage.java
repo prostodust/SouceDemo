@@ -16,8 +16,9 @@ public class ProductsPage extends HeaderPage {
      *
      * @param productName the product name
      */
-    public void addProductToCart(String productName) {
+    public ProductsPage addProductToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
+        return this;
     }
 
     /**
@@ -26,7 +27,7 @@ public class ProductsPage extends HeaderPage {
      * @param productName the product name
      * @return the text
      */
-    public String getButtonTextProduct(String productName) {
+    public String getAddProductToCartButtonText(String productName) {
         return driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).getText();
     }
 

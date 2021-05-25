@@ -1,7 +1,14 @@
 package pages;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -11,19 +18,29 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public static final By USERNAME_INPUT = By.xpath("//*[@data-test='username']");
-    public static final By PASSWORD_INPUT = By.xpath("//*[@data-test='password']");
-    public static final By LOGIN_BUTTON = By.xpath("//*[@data-test='login-button']");
-    public static final By ERROR_MESSAGE = By.xpath("//*[@id='login_button_container']");
-    public static final By BOT_LOGO = By.xpath("//*[@class='bot_column']");
+    @FindBy(xpath = "//*[@data-test='username']")
+    WebElement usernameInput;
+
+    @FindBy(xpath = "//*[@data-test='password']")
+    WebElement passwordInput;
+
+    @FindBy(xpath = "//*[@data-test='login-button']")
+    WebElement loginButton;
+
+    @FindBy(id = "login_button_container")
+    WebElement errorMessage;
+
+    @FindBy(xpath = "//*[@class='bot_column']")
+    WebElement botLogo;
 
     /**
      * Open page
      *
      * @param url the url
      */
-    public void openPage(String url) {
+    public LoginPage openPage(String url) {
         driver.get(url);
+        return this;
     }
 
     /**
@@ -32,10 +49,11 @@ public class LoginPage extends BasePage {
      * @param username the username
      * @param password the password
      */
-    public void login(String username, String password) {
-        driver.findElement(USERNAME_INPUT).sendKeys(username);
-        driver.findElement(PASSWORD_INPUT).sendKeys(password);
-        driver.findElement(LOGIN_BUTTON).click();
+    public ProductsPage login(String username, String password) {
+        usernameInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+        return new ProductsPage(driver);
     }
 
     /**
@@ -44,20 +62,29 @@ public class LoginPage extends BasePage {
      * @return error text
      */
     public String getErrorMessageText() {
-        return driver.findElement(ERROR_MESSAGE).getText();
+        return errorMessage.getText();
+    }
+
+    /**
+     * Waiting for an element to load during a timeout
+     *
+     * @param timeout the timeout
+     */
+    public LoginPage waitForElementBotLogoLocated(int timeout) {
+        wait = new WebDriverWait(driver, timeout);
+        wait.until(ExpectedConditions.visibilityOf(botLogo));
+        return this;
     }
 
     /**
      * Waiting for the page to open
      */
-    public void waitForPageOpened() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(BOT_LOGO));
+    public LoginPage waitForPageOpened() {
         Wait<WebDriver> fluent = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
         WebElement foo = fluent.until(driver -> driver.findElement(By.id("login-button")));
+        return this;
     }
-
 }
