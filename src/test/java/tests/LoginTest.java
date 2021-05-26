@@ -1,6 +1,8 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest implements ITestConstants {
@@ -8,7 +10,7 @@ public class LoginTest extends BaseTest implements ITestConstants {
     /**
      * Entering the correct data
      */
-    @Test
+    @Test (description = "Entering the correct data", groups = {"smoke"})
     public void enterCorrectUsernameAndPasswordTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
@@ -20,7 +22,7 @@ public class LoginTest extends BaseTest implements ITestConstants {
     /**
      * Empty value in the "username" field
      */
-    @Test
+    @Test (description = "Empty value in the \"username\" field")
     public void enterEmptyUsernameTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
@@ -32,7 +34,7 @@ public class LoginTest extends BaseTest implements ITestConstants {
     /**
      * Empty value in the "password" field
      */
-    @Test
+    @Test (description = "Empty value in the \"password\" field")
     public void enterEmptyPasswordTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
@@ -44,7 +46,7 @@ public class LoginTest extends BaseTest implements ITestConstants {
     /**
      * Empty value in the "name" and "password" fields
      */
-    @Test
+    @Test (description = "Empty value in the \"name\" and \"password\" fields", enabled = false)
     public void enterEmptyUsernameAndPasswordTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(20)

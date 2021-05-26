@@ -2,13 +2,14 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 public class CheckoutTest extends BaseTest implements ITestConstants {
 
     /**
      * Checking the Review stage when placing an order
      */
-    @Test
+    @Test (description = "Checking the Review stage when placing an order", alwaysRun = true)
     public void paymentCheckoutOverviewTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
@@ -27,7 +28,7 @@ public class CheckoutTest extends BaseTest implements ITestConstants {
     /**
      * Verification of the Completed stage when placing an order
      */
-    @Test
+    @Test (description = "Verification of the Completed stage when placing an order", retryAnalyzer = Retry.class)
     public void paymentCheckoutCompleteTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)

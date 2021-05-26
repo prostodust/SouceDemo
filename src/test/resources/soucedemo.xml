@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="SouceDemo regression test suite" parallel="tests" thread-count="2">
-    <test name="test 1">
+<suite name="SouceDemo test suite" parallel="tests" thread-count="2">
+    <test name="test section 1">
 <!--        <groups>-->
 <!--            <run>-->
-<!--                <include name="slow" />-->
+<!--                <include name="smoke"/>-->
 <!--            </run>-->
 <!--        </groups>-->
         <classes>
-            <class name="tests.LoginTest" />
+            <class name="tests.LoginTest"/>
         </classes>
     </test> <!-- Test -->
-    <test name="test 2">
+    <test name="test section 2">
         <classes>
-            <class name="tests.ProductsTest" />
-            <class name="tests.CartTest" />
-            <class name="tests.CheckoutTest" />
+            <class name="tests.ProductsTest"/>
+            <parameter name="username" value="performance_glitch_user"/>
+            <parameter name="password" value="secret_sauce"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="test section 3">
+        <classes>
+            <class name="tests.CartTest"/>
+            <class name="tests.CheckoutTest"/>
         </classes>
     </test> <!-- Test -->
 </suite>
