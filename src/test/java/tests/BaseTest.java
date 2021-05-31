@@ -9,6 +9,8 @@ import org.testng.annotations.Listeners;
 import pages.*;
 import utils.TestListener;
 
+import java.util.concurrent.TimeUnit;
+
 @Listeners(TestListener.class)
 abstract class BaseTest {
     WebDriver driver;
@@ -25,10 +27,7 @@ abstract class BaseTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        /*
-        TODO: implicit waiting is temporarily disabled
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        */
         initPages();
     }
 
