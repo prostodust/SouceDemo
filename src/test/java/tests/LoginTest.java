@@ -47,11 +47,11 @@ public class LoginTest extends BaseTest implements ITestConstants {
      * Passing parameters from the Maven command line inside the test
      * Invalid value in the "name" and "password" fields
      */
-    @Test (description = "Empty value in the \"name\" and \"password\" fields", enabled = false)
+    @Test (description = "Empty value in the \"name\" and \"password\" fields")
     public void enterEmptyUsernameAndPasswordTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(20)
-                .login(System.getProperty("username"), System.getProperty("password"))
+                .login(System.getProperty("username", "standard"), System.getProperty("password", "secret"))
                 .waitForPageLoaded();
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username and password do not match any user in this service");
     }

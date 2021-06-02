@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
@@ -65,7 +67,7 @@ public class LoginPage extends BasePage {
      * @param timeout the timeout
      */
     public LoginPage waitForElementBotLogoLocated(int timeout) {
-        wait = new WebDriverWait(driver, timeout);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.visibilityOf(botLogo));
         return this;
     }
