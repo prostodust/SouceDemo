@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,7 @@ public class ProductsPage extends HeaderPage {
      *
      * @param productName the product name
      */
+    @Step("Add product: {productName} to Cart")
     public ProductsPage addProductToCart(String productName) {
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
         return this;
@@ -46,6 +48,7 @@ public class ProductsPage extends HeaderPage {
 
     /**
      * Get product complete text
+     *
      * @return complete text
      */
     public String getProductCompleteText() {

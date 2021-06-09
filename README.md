@@ -45,7 +45,7 @@ Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 
 3.1 Running tests
-    mvn -Dtest=CheckoutTest#paymentCheckoutOverviewTest+paymentCheckoutCompleteTest test
+    mvn -Dtest=CheckoutTest#paymentCheckoutOverviewTest+paymentCheckoutCompleteTest tests
 
 //result
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 32.654 s - in tests.CheckoutTest
@@ -62,7 +62,7 @@ Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 
 3.2 Running tests
-    mvn clean test -DsuiteXmlFile=src/test/resources/soucedemo.xml
+    mvn clean tests -DsuiteXmlFile=src/tests/resources/soucedemo.xml
 
 //result
 Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 90.575 sec
@@ -75,8 +75,8 @@ Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
 [INFO] Finished at: 2021-05-26T23:48:57+03:00
 [INFO] ------------------------------------------------------------------------
 
-4. Passing parameters from the Maven command line inside the test
-   mvn -Dtest=LoginTest#enterEmptyUsernameAndPasswordTest -Dusername=standart -Dpassword=secret test
+4. Passing parameters from the Maven command line inside the tests
+   mvn -Dtest=LoginTest#enterEmptyUsernameAndPasswordTest -Dusername=standart -Dpassword=secret tests
 
 //result
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.789 s - in tests.LoginTest

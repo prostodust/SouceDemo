@@ -13,11 +13,11 @@
         <maven.compiler.target>8</maven.compiler.target>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <selenium-java.version>4.0.0-beta-3</selenium-java.version>
-        <testng.version>7.0.0</testng.version>
         <webdrivermanager.version>4.4.3</webdrivermanager.version>
         <allure-testng.version>2.14.0</allure-testng.version>
         <allure-maven.version>2.10.0</allure-maven.version>
         <aspectjweaver.version>1.9.6</aspectjweaver.version>
+        <testng.version>7.0.0</testng.version>
     </properties>
 
     <build>
@@ -54,7 +54,6 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
-            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>

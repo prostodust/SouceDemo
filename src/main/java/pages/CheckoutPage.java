@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,6 +48,7 @@ public class CheckoutPage extends HeaderPage {
      *
      * @param url the url
      */
+    @Step("Opening checkout page")
     public CheckoutPage openPage(String url) {
         driver.get(url);
         return this;
@@ -59,6 +61,7 @@ public class CheckoutPage extends HeaderPage {
      * @param lastname  the lastname
      * @param zipcode   the zipcode
      */
+    @Step("Fill in {firstname}, {lastname} and {zipcode} in checkout page")
     public CheckoutPage fillingCustomerData(String firstname, String lastname, String zipcode) {
         firstNameInput.sendKeys(firstname);
         lastNameInput.sendKeys(lastname);
@@ -69,6 +72,7 @@ public class CheckoutPage extends HeaderPage {
 
     /**
      * Get the text Item total amount
+     *
      * @return item total
      */
     public String getTotalItemsText() {
@@ -77,6 +81,7 @@ public class CheckoutPage extends HeaderPage {
 
     /**
      * Get the text Tax amount
+     *
      * @return tax
      */
     public String getTaxText() {
@@ -85,6 +90,7 @@ public class CheckoutPage extends HeaderPage {
 
     /**
      * Get the text Total amount
+     *
      * @return total
      */
     public String getTotalText() {
@@ -101,6 +107,7 @@ public class CheckoutPage extends HeaderPage {
 
     /**
      * Get checkout complete text
+     *
      * @return complete text
      */
     public String getCheckoutCompleteText() {
