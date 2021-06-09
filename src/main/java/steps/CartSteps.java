@@ -8,10 +8,24 @@ import pages.CartPage;
 public class CartSteps {
     private CartPage cartPage;
 
+    /**
+     * Init pages
+     *
+     * @param driver
+     */
     public CartSteps(WebDriver driver) {
         cartPage = new CartPage(driver);
     }
 
+    /**
+     * Check the product in the shopping cart
+     *
+     * @param url
+     * @param productName
+     * @param productPrice
+     * @param productQuantity
+     * @return
+     */
     @Step("Check the product in the shopping cart")
     public CartSteps checkProductInCart(String url, String productName, String productPrice, String productQuantity) {
         cartPage.openPage(url)

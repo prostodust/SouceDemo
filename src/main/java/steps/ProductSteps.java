@@ -9,11 +9,25 @@ public class ProductSteps {
     private LoginPage loginPage;
     private ProductsPage productsPage;
 
+    /**
+     * Init pages
+     *
+     * @param driver
+     */
     public ProductSteps(WebDriver driver) {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
     }
 
+    /**
+     * Login and add product to cart
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @param productName
+     * @return
+     */
     @Step("Login and add product to cart")
     public ProductSteps loginAndAddProduct(String url, String username, String password, String productName) {
         loginPage
