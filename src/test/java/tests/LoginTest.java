@@ -12,7 +12,8 @@ public class LoginTest extends BaseTest implements ITestConstants {
     public void enterCorrectUsernameAndPasswordTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
-                .login(STANDARD_USER_LOGIN, STANDARD_USER_PASSWORD)
+//                .login(STANDARD_USER_LOGIN, STANDARD_USER_PASSWORD)
+                .login(System.getenv("user"), System.getenv("pass"))
                 .waitForPageOpened();
         Assert.assertEquals(productsPage.getProductCompleteText(), "PRODUCTS");
     }
