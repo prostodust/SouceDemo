@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.PropertyReader;
 
 public class LoginTest extends BaseTest implements ITestConstants {
 
@@ -13,7 +14,7 @@ public class LoginTest extends BaseTest implements ITestConstants {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
 //                .login(STANDARD_USER_LOGIN, STANDARD_USER_PASSWORD)
-                .login(System.getenv("user"), System.getenv("pass"))
+                .login(System.getenv().getOrDefault("user", PropertyReader.getProperty("username")), System.getenv().getOrDefault("pass", PropertyReader.getProperty("password")))
                 .waitForPageOpened();
         Assert.assertEquals(productsPage.getProductCompleteText(), "PRODUCTS");
     }
