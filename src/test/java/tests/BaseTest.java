@@ -1,6 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
@@ -13,6 +14,7 @@ import utils.TestListener;
 
 import java.time.Duration;
 
+@Log4j2
 @Listeners(TestListener.class)
 abstract class BaseTest {
     WebDriver driver;
@@ -34,7 +36,7 @@ abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         initPages();
         String variable = "driver";
-        System.out.println("Setting driver into context with variable name " + variable);
+        log.info("Setting driver into context with variable name " + variable);
         context.setAttribute(variable, driver);
     }
 

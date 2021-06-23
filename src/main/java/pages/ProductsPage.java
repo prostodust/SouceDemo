@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
+@Log4j2
 public class ProductsPage extends HeaderPage {
 
     public ProductsPage(WebDriver driver) {
@@ -32,6 +34,7 @@ public class ProductsPage extends HeaderPage {
      */
     @Step("Add product: {productName} to Cart")
     public ProductsPage addProductToCart(String productName) {
+        log.info("Add product <" + productName + "> to Cart");
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
         return this;
     }
@@ -43,7 +46,10 @@ public class ProductsPage extends HeaderPage {
      * @return the text
      */
     public String getAddProductToCartButtonText(String productName) {
-        return driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).getText();
+        log.info("Getting text from the <Add> button by product <" + productName + ">");
+        String textAddProductToCartButton = driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).getText();
+        log.info("Return text: " + textAddProductToCartButton);
+        return textAddProductToCartButton;
     }
 
     /**
@@ -52,6 +58,7 @@ public class ProductsPage extends HeaderPage {
      * @return complete text
      */
     public String getProductCompleteText() {
+        log.debug("Get product complete text");
         return completeText.getText();
     }
 
@@ -59,6 +66,7 @@ public class ProductsPage extends HeaderPage {
      * Waiting for the page to open
      */
     public ProductsPage waitForPageOpened() {
+        log.debug("Waiting for the page to open");
         Wait<WebDriver> fluent = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(5))

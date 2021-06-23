@@ -1,10 +1,12 @@
 package steps;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.CartPage;
 
+@Log4j2
 public class CartSteps {
     private CartPage cartPage;
 
@@ -28,6 +30,8 @@ public class CartSteps {
      */
     @Step("Check the product in the shopping cart")
     public CartSteps checkProductInCart(String url, String productName, String productPrice, String productQuantity) {
+        log.info("Opening a page <" + url + ">, checking the cost <" + productPrice + "> and quantity <" + productQuantity +
+                "> of the <" + productName + ">");
         cartPage.openPage(url)
                 .waitForPageOpened();
         Assert.assertEquals(cartPage.getProductQuantity(productName), productQuantity);

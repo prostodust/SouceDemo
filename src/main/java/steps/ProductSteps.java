@@ -1,10 +1,12 @@
 package steps;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.ProductsPage;
 
+@Log4j2
 public class ProductSteps {
     private LoginPage loginPage;
     private ProductsPage productsPage;
@@ -30,6 +32,8 @@ public class ProductSteps {
      */
     @Step("Login and add product to cart")
     public ProductSteps loginAndAddProduct(String url, String username, String password, String productName) {
+        log.info("Log in to the page <" + url + "> under the user <" + username + "> and the password <" + password +
+                "> and add the product <" + productName + "> to the cart");
         loginPage
                 .openPage(url)
                 .waitForElementBotLogoLocated(10)
