@@ -39,7 +39,7 @@ public class LoginPage extends BasePage {
      */
     @Step("Opening login page")
     public LoginPage openPage(String url) {
-        log.info("Opening login page, URL " + url);
+        log.info("Opening the login page at " + url);
         driver.get(url);
         return this;
     }
@@ -52,9 +52,13 @@ public class LoginPage extends BasePage {
      */
     @Step("Fill in {username} and {password} in login page")
     public ProductsPage login(String username, String password) {
+        log.info("Fill in username <" + username + "> in login page");
         usernameInput.sendKeys(username);
+        log.info("Fill in password <" + password + "> in login page");
         passwordInput.sendKeys(password);
+        log.info("Pressing the button <Login>");
         loginButton.click();
+        log.info("Went to the products page");
         return new ProductsPage(driver);
     }
 
@@ -64,6 +68,7 @@ public class LoginPage extends BasePage {
      * @return error text
      */
     public String getErrorMessageText() {
+        log.info("Getting an error message");
         return errorMessage.getText();
     }
 
@@ -73,9 +78,9 @@ public class LoginPage extends BasePage {
      * @param timeout the timeout
      */
     public LoginPage waitForElementBotLogoLocated(int timeout) {
+        log.debug("Waiting for an element to load in login page during a <" + timeout + "> second");
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.visibilityOf(botLogo));
         return this;
     }
-
 }

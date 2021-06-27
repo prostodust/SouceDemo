@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-
 import java.time.Duration;
 
+@Log4j2
 public class CartPage extends HeaderPage {
 
     public CartPage(WebDriver driver) {
@@ -31,6 +32,7 @@ public class CartPage extends HeaderPage {
      */
     @Step("Opening cart page")
     public CartPage openPage(String url) {
+        log.info("Opening the shopping cart page at " + url);
         driver.get(url);
         return this;
     }
@@ -42,7 +44,10 @@ public class CartPage extends HeaderPage {
      * @return the product quantity
      */
     public String getProductQuantity(String productName) {
-        return driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
+        log.info("Gets product <" + productName + "> quantity");
+        String textProductQuantity = driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
+        log.info("Product quantity is: " + textProductQuantity);
+        return textProductQuantity;
     }
 
     /**
@@ -52,13 +57,17 @@ public class CartPage extends HeaderPage {
      * @return the product price
      */
     public String getProductPrice(String productName) {
-        return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
+        log.info("Gets product <" + productName + "> price");
+        String textProductPrice = driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
+        log.info("Product price is: " + textProductPrice);
+        return textProductPrice;
     }
 
     /**
      * Waiting for the page to open
      */
     public CartPage waitForPageOpened() {
+        log.debug("Waiting for the cart page to open");
         Wait<WebDriver> fluent = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(5))

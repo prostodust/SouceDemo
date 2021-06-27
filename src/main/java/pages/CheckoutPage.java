@@ -1,6 +1,7 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
+@Log4j2
 public class CheckoutPage extends HeaderPage {
 
     public CheckoutPage(WebDriver driver) {
@@ -50,6 +52,7 @@ public class CheckoutPage extends HeaderPage {
      */
     @Step("Opening checkout page")
     public CheckoutPage openPage(String url) {
+        log.info("Opening the checkout page at " + url);
         driver.get(url);
         return this;
     }
@@ -63,9 +66,13 @@ public class CheckoutPage extends HeaderPage {
      */
     @Step("Fill in {firstname}, {lastname} and {zipcode} in checkout page")
     public CheckoutPage fillingCustomerData(String firstname, String lastname, String zipcode) {
+        log.info("Fill in <" + firstname + "> in checkout page");
         firstNameInput.sendKeys(firstname);
+        log.info("Fill in <" + lastname + "> in checkout page");
         lastNameInput.sendKeys(lastname);
+        log.info("Fill in <" + zipcode + "> in checkout page");
         zipCodeInput.sendKeys(zipcode);
+        log.info("Pressing the button <Continue>");
         continueButton.click();
         return this;
     }
@@ -76,7 +83,10 @@ public class CheckoutPage extends HeaderPage {
      * @return item total
      */
     public String getTotalItemsText() {
-        return itemTotalAmount.getText();
+        log.info("Get the text <Item total amount>");
+        String textItemTotalAmount = itemTotalAmount.getText();
+        log.info("Item total amount is: " + textItemTotalAmount);
+        return textItemTotalAmount;
     }
 
     /**
@@ -85,7 +95,10 @@ public class CheckoutPage extends HeaderPage {
      * @return tax
      */
     public String getTaxText() {
-        return taxAmount.getText();
+        log.info("Get the text <Tax amount>");
+        String textTaxAmount = taxAmount.getText();
+        log.info("Tax amount is: " + textTaxAmount);
+        return textTaxAmount;
     }
 
     /**
@@ -94,13 +107,17 @@ public class CheckoutPage extends HeaderPage {
      * @return total
      */
     public String getTotalText() {
-        return totalAmount.getText();
+        log.info("Get the text <Total amount>");
+        String textTotalAmount = totalAmount.getText();
+        log.info("Total amount is: " + textTotalAmount);
+        return textTotalAmount;
     }
 
     /**
      * Pressing the button finish
      */
     public CheckoutPage clickFinishButton() {
+        log.info("Pressing the button <Finish>");
         finishButton.click();
         return this;
     }
@@ -111,6 +128,7 @@ public class CheckoutPage extends HeaderPage {
      * @return complete text
      */
     public String getCheckoutCompleteText() {
+        log.debug("Get checkout complete text");
         return completeText.getText();
     }
 
@@ -118,6 +136,7 @@ public class CheckoutPage extends HeaderPage {
      * Waiting for the page to open
      */
     public CheckoutPage waitForPageOpened() {
+        log.debug("Waiting for the checkout page to open");
         Wait<WebDriver> fluent = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(5))
