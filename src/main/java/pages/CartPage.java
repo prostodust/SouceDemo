@@ -46,7 +46,7 @@ public class CartPage extends HeaderPage {
     public String getProductQuantity(String productName) {
         log.info("Gets product <" + productName + "> quantity");
         String textProductQuantity = driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
-        log.info("Return text: " + textProductQuantity);
+        log.info("Product quantity is: " + textProductQuantity);
         return textProductQuantity;
     }
 
@@ -59,7 +59,7 @@ public class CartPage extends HeaderPage {
     public String getProductPrice(String productName) {
         log.info("Gets product <" + productName + "> price");
         String textProductPrice = driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
-        log.info("Return text: " + textProductPrice);
+        log.info("Product price is: " + textProductPrice);
         return textProductPrice;
     }
 
@@ -67,7 +67,7 @@ public class CartPage extends HeaderPage {
      * Waiting for the page to open
      */
     public CartPage waitForPageOpened() {
-        log.debug("Waiting for the page to open");
+        log.debug("Waiting for the cart page to open");
         Wait<WebDriver> fluent = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(5))

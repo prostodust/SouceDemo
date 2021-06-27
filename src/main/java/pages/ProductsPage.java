@@ -34,7 +34,7 @@ public class ProductsPage extends HeaderPage {
      */
     @Step("Add product: {productName} to Cart")
     public ProductsPage addProductToCart(String productName) {
-        log.info("Add product <" + productName + "> to Cart");
+        log.info("Add product <" + productName + "> to Cart at the product page");
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
         return this;
     }
@@ -48,7 +48,7 @@ public class ProductsPage extends HeaderPage {
     public String getAddProductToCartButtonText(String productName) {
         log.info("Getting text from the <Add> button by product <" + productName + ">");
         String textAddProductToCartButton = driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).getText();
-        log.info("Return text: " + textAddProductToCartButton);
+        log.info("Text in <Add> button is: " + textAddProductToCartButton);
         return textAddProductToCartButton;
     }
 
@@ -66,7 +66,7 @@ public class ProductsPage extends HeaderPage {
      * Waiting for the page to open
      */
     public ProductsPage waitForPageOpened() {
-        log.debug("Waiting for the page to open");
+        log.debug("Waiting for the product page to open");
         Wait<WebDriver> fluent = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(5))

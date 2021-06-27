@@ -66,10 +66,13 @@ public class CheckoutPage extends HeaderPage {
      */
     @Step("Fill in {firstname}, {lastname} and {zipcode} in checkout page")
     public CheckoutPage fillingCustomerData(String firstname, String lastname, String zipcode) {
-        log.info("Fill in <" + firstname + ">, <" + lastname + "> and <" + zipcode + "> in checkout page");
+        log.info("Fill in <" + firstname + "> in checkout page");
         firstNameInput.sendKeys(firstname);
+        log.info("Fill in <" + lastname + "> in checkout page");
         lastNameInput.sendKeys(lastname);
+        log.info("Fill in <" + zipcode + "> in checkout page");
         zipCodeInput.sendKeys(zipcode);
+        log.info("Pressing the button <Continue>");
         continueButton.click();
         return this;
     }
@@ -82,7 +85,7 @@ public class CheckoutPage extends HeaderPage {
     public String getTotalItemsText() {
         log.info("Get the text <Item total amount>");
         String textItemTotalAmount = itemTotalAmount.getText();
-        log.info("Return text: " + textItemTotalAmount);
+        log.info("Item total amount is: " + textItemTotalAmount);
         return textItemTotalAmount;
     }
 
@@ -94,7 +97,7 @@ public class CheckoutPage extends HeaderPage {
     public String getTaxText() {
         log.info("Get the text <Tax amount>");
         String textTaxAmount = taxAmount.getText();
-        log.info("Return text: " + textTaxAmount);
+        log.info("Tax amount is: " + textTaxAmount);
         return textTaxAmount;
     }
 
@@ -106,7 +109,7 @@ public class CheckoutPage extends HeaderPage {
     public String getTotalText() {
         log.info("Get the text <Total amount>");
         String textTotalAmount = totalAmount.getText();
-        log.info("Return text: " + textTotalAmount);
+        log.info("Total amount is: " + textTotalAmount);
         return textTotalAmount;
     }
 
@@ -133,7 +136,7 @@ public class CheckoutPage extends HeaderPage {
      * Waiting for the page to open
      */
     public CheckoutPage waitForPageOpened() {
-        log.debug("Waiting for the page to open");
+        log.debug("Waiting for the checkout page to open");
         Wait<WebDriver> fluent = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(5))

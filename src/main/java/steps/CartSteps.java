@@ -30,10 +30,10 @@ public class CartSteps {
      */
     @Step("Check the product in the shopping cart")
     public CartSteps checkProductInCart(String url, String productName, String productPrice, String productQuantity) {
-        log.info("Opening a page <" + url + ">, checking the cost <" + productPrice + "> and quantity <" + productQuantity +
-                "> of the <" + productName + ">");
+        log.info("Opening a page <" + url + ">");
         cartPage.openPage(url)
                 .waitForPageOpened();
+        log.info("Checking the cost <" + productPrice + "> and quantity <" + productQuantity + "> of the <" + productName + ">");
         Assert.assertEquals(cartPage.getProductQuantity(productName), productQuantity);
         Assert.assertEquals(cartPage.getProductPrice(productName), productPrice);
         return this;
