@@ -9,13 +9,13 @@
 <!--        </groups>-->
         <classes>
             <class name="tests.LoginTest"/>
+            <parameter name="userFromXML" value="performance_glitch_user"/>
+            <parameter name="passFromXML" value="secret_sauce"/>
         </classes>
     </test> <!-- Test -->
     <test name="tests section 2">
         <classes>
             <class name="tests.ProductsTest"/>
-            <parameter name="username" value="performance_glitch_user"/>
-            <parameter name="password" value="secret_sauce"/>
         </classes>
     </test> <!-- Test -->
     <test name="tests section 3">
