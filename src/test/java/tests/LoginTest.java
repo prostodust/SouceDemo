@@ -57,13 +57,13 @@ public class LoginTest extends BaseTest implements ITestConstants {
     }
 
     /**
-     * Passing parameters from the file config.properties inside the test
+     * Passing parameters from CircleCI (or default value from file config.properties) inside the test
      */
     @Test(description = "Passing parameters from the file config.properties inside the test", groups = {"smoke"})
     public void enterUsernameAndPasswordFromConfigTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
-                .login(System.getenv().getOrDefault("userFromConfig", PropertyReader.getProperty("user")), System.getenv().getOrDefault("passFromConfig", PropertyReader.getProperty("pass")))
+                .login(System.getenv().getOrDefault("userFromCircleCI", PropertyReader.getProperty("user")), System.getenv().getOrDefault("passFromCircleCI", PropertyReader.getProperty("pass")))
                 .waitForPageOpened();
         Assert.assertEquals(productsPage.getProductCompleteText(), "PRODUCTS");
     }
@@ -85,10 +85,10 @@ public class LoginTest extends BaseTest implements ITestConstants {
      */
     @Parameters({"userFromXML", "passFromXML"})
     @Test(description = "Passing parameters \"name\" and \"password\" from the TestNG inside the test")
-    public void enterUsernameAndPasswordFromTestNGTest(@Optional(STANDARD_USER_LOGIN) String p1, @Optional(STANDARD_USER_PASSWORD) String p2) {
+    public void enterUsernameAndPasswordFromTestNGTest(@Optional(STANDARD_USER_LOGIN) String p1_user, @Optional(STANDARD_USER_PASSWORD) String p2_pass) {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(20)
-                .login(p1, p2)
+                .login(p1_user, p2_pass)
                 .waitForPageLoaded();
         Assert.assertEquals(productsPage.getProductCompleteText(), "PRODUCTS");
     }
