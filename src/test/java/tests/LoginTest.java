@@ -59,17 +59,17 @@ public class LoginTest extends BaseTest implements ITestConstants {
     /**
      * Passing parameters from CircleCI (or default value from file config.properties) inside the test
      */
-    @Test(description = "Passing parameters from the file config.properties inside the test", groups = {"smoke"})
+    @Test(description = "Passing parameters from CircleCI/config.properties inside the test", groups = {"smoke"})
     public void enterUsernameAndPasswordFromConfigTest() {
         loginPage.openPage(SAUCE_DEMO_BASE_URL)
                 .waitForElementBotLogoLocated(10)
-                .login(System.getenv().getOrDefault("userFromCircleCI", PropertyReader.getProperty("user")), System.getenv().getOrDefault("passFromCircleCI", PropertyReader.getProperty("pass")))
+                .login(System.getenv().getOrDefault("userFromCircleCI", PropertyReader.getProperty("userFromConfig")), System.getenv().getOrDefault("passFromCircleCI", PropertyReader.getProperty("passFromConfig")))
                 .waitForPageOpened();
         Assert.assertEquals(productsPage.getProductCompleteText(), "PRODUCTS");
     }
 
     /**
-     * Passing parameters from the Maven command line inside the test
+     * Passing parameters from the Maven command line (or default value this) inside the test
      */
     @Test(description = "Passing parameters \"name\" and \"password\" from the Maven command line inside the test")
     public void enterUsernameAndPasswordFromMavenTest() {
@@ -81,7 +81,7 @@ public class LoginTest extends BaseTest implements ITestConstants {
     }
 
     /**
-     * Passing parameters TestNG from the file soucedemo.xml and inside the test
+     * Passing parameters TestNG from the file soucedemo.xml (or default value from @Optional) inside the test
      */
     @Parameters({"userFromXML", "passFromXML"})
     @Test(description = "Passing parameters \"name\" and \"password\" from the TestNG inside the test")
